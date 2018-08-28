@@ -12,7 +12,7 @@ describe('bug 15', function() {
   
   before("DB1 connection", (done) => {
     mockgoose.prepareStorage().then(function() {
-      var db1 = mongoose.createConnection("mongodb://barbaz", { user: "fakeUser", pass: "fakePass" }, (err, res) => {
+      var db1 = mongoose.createConnection("mongodb://barbaz", (err, res) => {
         if (err) throw err;
         Cat1 = db1.model('Cat', CatSchema);
         done(err);
@@ -25,7 +25,7 @@ describe('bug 15', function() {
   // create connection to second database
   before("DB2 connection", (done) => {
     mockgoose.prepareStorage().then(function() {
-      var db2 = mongoose.createConnection("mongodb://foobar", { user: "fakeUser", password: "fakePass" }, (err, res) => {
+      var db2 = mongoose.createConnection("mongodb://foobar", (err, res) => {
         if (err) throw err;
         Cat2 = db2.model('Cat', CatSchema);
         done(err);
