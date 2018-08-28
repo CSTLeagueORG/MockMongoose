@@ -4,7 +4,7 @@ var expect = require('chai').expect;
 
 describe('callback', function todoDescribe() {
   var Mongoose = require('mongoose').Mongoose;
-  var Mockgoose = require('../built/mockgoose').Mockgoose;
+  var Mockgoose = require('../built/mock-mongoose').Mockgoose;
   var mongoose = new Mongoose();
   var mockgoose = new Mockgoose(mongoose);
   

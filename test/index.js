@@ -3,7 +3,7 @@ var should = require('chai').should()
 ,expect = require('chai').expect
 , Mongoose = require('mongoose').Mongoose
 , mongoose = new Mongoose
-, Mockgoose = require('../built/mockgoose').Mockgoose
+, Mockgoose = require('../built/mock-mongoose').Mockgoose
 , mockgoose = new Mockgoose(mongoose)
 , Cat = mongoose.model('Cat', { name: String });
 

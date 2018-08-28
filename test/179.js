@@ -2,7 +2,7 @@ var should = require('chai').should();
 var expect = require('chai').expect;
 var Mongoose = require('mongoose').Mongoose;
 var mongoose = new Mongoose;
-var Mockgoose = require('../built/mockgoose').Mockgoose;
+var Mockgoose = require('../built/mock-mongoose').Mockgoose;
 var mockgoose = new Mockgoose(mongoose);
 
 var Cat = mongoose.model('Cat', {

@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var path = require('path');
-var Mockgoose = require(path.join(__dirname, '../built/mockgoose')).Mockgoose;
+var Mockgoose = require(path.join(__dirname, '../built/mock-mongoose')).Mockgoose;
 var expect = require('chai').expect;
 
 var mockgoose = new Mockgoose(mongoose);

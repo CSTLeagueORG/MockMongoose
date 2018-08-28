@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var path = require('path');
-var Mockgoose = require('../built/mockgoose').Mockgoose;
+var Mockgoose = require('../built/mock-mongoose').Mockgoose;
 var expect = require('chai').expect;
 var mockgoose = new Mockgoose(mongoose);
 var CatSchema = new mongoose.Schema({name: String});
@@ -12,7 +12,7 @@ describe('bug 15', function() {
   
   before("DB1 connection", (done) => {
     mockgoose.prepareStorage().then(function() {
-      var db1 = mongoose.createConnection("mongodb://barbaz", { user: "fakeUser", password: "fakePass" }, (err, res) => {
+      var db1 = mongoose.createConnection("mongodb://barbaz", { user: "fakeUser", pass: "fakePass" }, (err, res) => {
         if (err) throw err;
         Cat1 = db1.model('Cat', CatSchema);
         done(err);
