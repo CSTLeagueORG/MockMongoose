@@ -4,7 +4,7 @@ import * as os from 'os';
 import * as path from 'path';
 import * as fs from 'fs-extra';
 import {MongodHelper} from 'mongodb-prebuilt';
-import {MockgooseHelper} from './mockgoose-helper';
+import {MockgooseHelper} from './mock-mongoose-helper';
 //const uuidV4 = require('uuid/v4');
 const uuidV4: any = require('uuid/v4');
 

@@ -1,5 +1,5 @@
 import { MongodHelper } from 'mongodb-prebuilt';
-import { MockgooseHelper } from './mockgoose-helper';
+import { MockgooseHelper } from './mock-mongoose-helper';
 export declare class Mockgoose {
     helper: MockgooseHelper;
     mongodHelper: MongodHelper;

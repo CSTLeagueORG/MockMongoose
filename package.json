@@ -1,13 +1,19 @@
 {
-  "name": "mockgoose",
-  "main": "built/mockgoose.js",
-  "types": "built/mockgoose.d.ts",
+  "name": "mock-mongoose",
+  "main": "built/mock-mongoose.js",
+  "types": "built/mock-mongoose.d.ts",
   "description": "Mockgoose is an in memory database mock to allow for testing of applications that rely on Mongoose.",
-  "version": "7.3.5",
-  "author": {
-    "name": "Anthony McCormick",
-    "email": "anthony.mccormick@gmail.com"
-  },
+  "version": "7.3.6",
+  "contributors": [
+    {
+      "name": "Anthony McCormick",
+      "email": "anthony.mccormick@gmail.com"
+    },
+    {
+      "name": "Sergey Zhirov",
+      "email": "polarwolf@cscleague.org"
+    }
+  ],
   "keywords": [
     "mongodb",
     "mongoose",
@@ -28,29 +34,29 @@
   },
   "dependencies": {
     "async": "2.1.5",
-    "debug": "2.2.0",
+    "debug": "^3.1.0",
     "fs-extra": "^2.0.0",
-    "https-proxy-agent": "1.0.0",
+    "https-proxy-agent": "^2.2.1",
     "mongodb-prebuilt": "^6.3.6",
     "portfinder": "^1.0.13",
     "rimraf": "^2.6.1",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
-    "@types/node-uuid": "0.0.28",
-    "@types/node": "^6.0.58",
-    "@types/mongoose": "^4.7.6",
-    "@types/fs-extra": "~0.0.37",
     "@types/async": "~2.0.39",
+    "@types/fs-extra": "~0.0.37",
+    "@types/mongoose": "^4.7.6",
+    "@types/node": "^6.0.58",
+    "@types/node-uuid": "0.0.28",
     "chai": "~2.2.0",
-    "mocha": "~2.2.4",
+    "mocha": "^5.2.0",
     "mongoose": "*"
   },
   "bugs": {
-    "url": "https://github.com/Mockgoose/Mockgoose/issues"
+    "url": "https://github.com/CSTLeagueORG/Mockgoose/issues"
   },
-  "repository": "Mockgoose/Mockgoose",
-  "homepage": "https://github.com/Mockgoose/Mockgoose",
+  "repository": "CSTLeagueORG/Mockgoose",
+  "homepage": "https://github.com/CSTLeagueORG/Mockgoose",
   "readmeFilename": "README.md",
   "license": "MIT"
 }

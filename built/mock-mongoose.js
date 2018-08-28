@@ -6,14 +6,14 @@ var os = require("os");
 var path = require("path");
 var fs = require("fs-extra");
 var mongodb_prebuilt_1 = require("mongodb-prebuilt");
-var mockgoose_helper_1 = require("./mockgoose-helper");
+var mock_mongoose_helper_1 = require("./mock-mongoose-helper");
 //const uuidV4 = require('uuid/v4');
 var uuidV4 = require('uuid/v4');
-var Mockgoose = (function () {
+var Mockgoose = /** @class */ (function () {
     function Mockgoose(mongooseObj) {
         this.mongodHelper = new mongodb_prebuilt_1.MongodHelper();
         this.debug = Debug('Mockgoose');
-        this.helper = new mockgoose_helper_1.MockgooseHelper(mongooseObj, this);
+        this.helper = new mock_mongoose_helper_1.MockgooseHelper(mongooseObj, this);
         this.mongooseObj = mongooseObj;
         this.mongooseObj.mocked = true;
     }
@@ -85,7 +85,7 @@ var Mockgoose = (function () {
     return Mockgoose;
 }());
 exports.Mockgoose = Mockgoose;
-var ConnectionWrapper = (function () {
+var ConnectionWrapper = /** @class */ (function () {
     function ConnectionWrapper(functionName, mongoose, connectionString) {
         this.functionName = functionName;
         this.mongoose = mongoose;
@@ -101,4 +101,4 @@ var ConnectionWrapper = (function () {
     return ConnectionWrapper;
 }());
 exports.ConnectionWrapper = ConnectionWrapper;
-//# sourceMappingURL=/Users/winfinit/workspace/personal/Mockgoose/mockgoose.js.map
+//# sourceMappingURL=C:/Users/PolarWolf/Documents/Mockgoose/mock-mongoose.js.map

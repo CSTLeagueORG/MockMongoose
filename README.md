@@ -1,9 +1,4 @@
-[![Build Status](https://travis-ci.org/Mockgoose/Mockgoose.svg?branch=master)](https://travis-ci.org/Mockgoose/Mockgoose)
-
-Please Share on Twitter if you like #mockgoose
-<a href="https://twitter.com/intent/tweet?hashtags=mockgoose&amp;&amp;text=Check%20out%20this%20%23Mongoose%20%23MongoDB%20Mocking%20Framework&amp;tw_p=tweetbutton&amp;url=http%3A%2F%2Fbit.ly%2F19gcHwm&amp;via=omnipitence" style="float:right">
-<img src="https://raw.github.com/Mockgoose/Mockgoose/master/twittershare.png">
-</a>
+[![Build Status](https://travis-ci.org/CSTLeagueORG/Mockgoose.svg?branch=master)](https://travis-ci.org/CSTLeagueORG/Mockgoose)
 
 ## What is Mockgoose?
 
@@ -13,7 +8,7 @@ Mockgoose provides test database by spinning up mongod on the back when mongoose
 To install the latest official version, use NPM:
 
 ```bash
-npm install mockgoose --save-dev
+npm install mock-mongoose --save-dev
 ```
 
 ## Usage
@@ -21,7 +16,7 @@ You simply require Mongoose and Mockgoose and wrap Mongoose with Mockgoose.
 
 ```javascript
 var mongoose = require('mongoose');
-var Mockgoose = require('mockgoose').Mockgoose;
+var Mockgoose = require('mock-mongoose').Mockgoose;
 var mockgoose = new Mockgoose(mongoose);
 
 mockgoose.prepareStorage().then(function() {
@@ -47,7 +42,7 @@ Same can be done by creating 'mocha.opts' file in your test directory with "--ti
 var Mongoose = require('mongoose').Mongoose;
 var mongoose = new Mongoose();
 
-var Mockgoose = require('mockgoose').Mockgoose;
+var Mockgoose = require('mock-mongoose').Mockgoose;
 var mockgoose = new Mockgoose(mongoose);
 
 before(function(done) {
@@ -70,7 +65,7 @@ describe('...', function() {
 
 ```javascript
 import * as mongoose from 'mongoose';
-import {Mockgoose} from 'mockgoose';
+import {Mockgoose} from 'mock-mongoose';
 
 let mockgoose: Mockgoose = new Mockgoose(mongoose);
 
@@ -109,7 +104,7 @@ Set version of MongoDB release
 
 ```javascript
 import * as mongoose from 'mongoose';
-import {Mockgoose} from 'mockgoose';
+import {Mockgoose} from 'mock-mongoose';
 
 let mockgoose: Mockgoose = new Mockgoose(mongoose);
 mockgoose.helper.setDbVersion("3.2.1");
@@ -127,7 +122,7 @@ Set proxy for downloading MongoDB release
 
 ```javascript
 import * as mongoose from 'mongoose';
-import {Mockgoose} from 'mockgoose';
+import {Mockgoose} from 'mock-mongoose';
 
 let mockgoose: Mockgoose = new Mockgoose(mongoose);
 
@@ -154,7 +149,7 @@ It is not relevant if you just want to use Mockgoose as a library in your projec
 ### Setup
 
 ```bash
-git clone git@github.com:Mockgoose/Mockgoose.git
+git clone git@github.com:CSTLeagueORG/Mockgoose.git
 cd Mockgoose
 npm install
 npm test
