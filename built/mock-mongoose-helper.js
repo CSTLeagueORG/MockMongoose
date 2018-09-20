@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Debug = require('debug');
+// @ts-ignore
 var async_1 = require("async");
 var httpsProxyAgent = require('https-proxy-agent');
 var MockgooseHelper = /** @class */ (function () {

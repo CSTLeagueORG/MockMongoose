@@ -12,6 +12,7 @@ export declare class Mockgoose {
     getOpenPort(): Promise<number>;
     getMemoryStorageName(): string;
     getTempDBPath(): Promise<string>;
+    killMongo(): Promise<void>;
 }
 export declare class ConnectionWrapper {
     originalArguments: any;

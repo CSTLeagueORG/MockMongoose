@@ -1,4 +1,5 @@
 const Debug: any = require('debug');
+// @ts-ignore
 import {each as asyncEach} from 'async';
 let httpsProxyAgent = require('https-proxy-agent');
 
@@ -35,7 +36,7 @@ export class MockgooseHelper {
           this.debug(`@reset err dropping database ${e}`);
           callback();
         });
-      }, (err) => {
+      }, (err: any) => {
         if ( err ) {
           this.debug(`@reset err ${err}`);
           reject();

@@ -11,6 +11,7 @@
         "moduleResolution": "node",
         "mapRoot": "./",
         "noLib": false,
+        "strict": true,
         "outDir": "built",
         "types" : ["node"],
         "typeRoots": [ "node_modules/@types" ],

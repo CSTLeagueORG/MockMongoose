@@ -1,10 +1,14 @@
 const Debug: any = require('debug');
+// @ts-ignore
 import * as portfinder from 'portfinder';
 import * as os from 'os';
 import * as path from 'path';
+// @ts-ignore
 import * as fs from 'fs-extra';
+// @ts-ignore
 import {MongodHelper} from 'mongodb-prebuilt';
 import {MockgooseHelper} from './mock-mongoose-helper';
+import {Mongoose} from 'mongoose';
 //const uuidV4 = require('uuid/v4');
 const uuidV4: any = require('uuid/v4');
 
@@ -67,7 +71,7 @@ export class Mockgoose {
   
   getOpenPort(): Promise<number> {
     return new Promise<number>((resolve, reject) => {
-      portfinder.getPort({port: 27017}, function (err, port) {
+      portfinder.getPort({port: 27017}, function (err: any, port: number) {
         if ( err ) {
           reject(err)
         } else {
@@ -91,6 +95,11 @@ export class Mockgoose {
         resolve(tempDir);
       });
     });
+  }
+
+  async killMongo(): Promise<void> {
+    await (this.mongooseObj as Mongoose).connection.close();
+    this.mongodHelper.mongoBin.childProcess.kill('SIGKILL');
   }
 }
 
