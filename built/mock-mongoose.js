@@ -127,6 +127,7 @@ var Mockgoose = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.mongooseObj.connection.close()];
                     case 1:
                         _a.sent();
+                        this.mongooseObj.mocked = false;
                         this.mongodHelper.mongoBin.childProcess.kill('SIGKILL');
                         return [2 /*return*/];
                 }

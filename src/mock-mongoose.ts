@@ -99,6 +99,7 @@ export class Mockgoose {
 
   async killMongo(): Promise<void> {
     await (this.mongooseObj as Mongoose).connection.close();
+    this.mongooseObj.mocked = false;
     this.mongodHelper.mongoBin.childProcess.kill('SIGKILL');
   }
 }
