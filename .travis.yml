@@ -1,4 +1,5 @@
 sudo: false
+webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
 language: node_js
 node_js:
   - "8"
