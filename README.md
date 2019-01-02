@@ -1,6 +1,12 @@
-[![Build Status](https://travis-ci.org/CSTLeagueORG/Mockgoose.svg?branch=master)](https://travis-ci.org/CSTLeagueORG/Mockgoose)
-
 ## What is MockMongoose?
+
+[![Build Status](https://travis-ci.org/CSTLeagueORG/MockMongoose.svg?branch=master)](https://travis-ci.org/CSTLeagueORG/MockMongoose)
+[![](https://img.shields.io/david/CSTLeagueORG/MockMongoose.svg)](https://www.npmjs.com/package/mock-mongoose)
+[![](https://img.shields.io/github/license/CSTLeagueORG/MockMongoose.svg)](https://github.com/CSTLeagueORG/MockMongoose/blob/master/LICENSE)
+[![](https://img.shields.io/npm/v/mock-mongoose/latest.svg)](https://www.npmjs.com/package/mock-mongoose)
+[![](https://img.shields.io/npm/v/mock-mongoose/beta.svg)](https://www.npmjs.com/package/mock-mongoose)
+[![](https://img.shields.io/github/release-date/CSTLeagueORG/MockMongoose.svg)](https://github.com/CSTLeagueORG/MockMongoose/releases)
+[![](https://img.shields.io/github/contributors/CSTLeagueORG/MockMongoose.svg)](https://github.com/CSTLeagueORG/MockMongoose/graphs/contributors)
 
 MockMongoose provides test database by spinning up mongod on the back when mongoose.connect call is made. By default it is using in memory store which does not have persistence.
 
@@ -149,8 +155,8 @@ It is not relevant if you just want to use MockMongoose as a library in your pro
 ### Setup
 
 ```bash
-git clone git@github.com:CSTLeagueORG/Mockgoose.git
-cd Mockgoose
+git clone git@github.com:CSTLeagueORG/MockMongoose.git
+cd MockMongoose
 npm install
 npm test
 ```
