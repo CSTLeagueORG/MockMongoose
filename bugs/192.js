@@ -2,7 +2,7 @@
 
 var expect = require('chai').expect;
 var Mongoose = require('mongoose').Mongoose;
-var mockgoose = require('../Mockgoose');
+var mockgoose = require('../MockMongoose');
 var mongoose = new Mongoose();
 mockgoose(mongoose);
 

@@ -1,14 +1,14 @@
 var mongoose = require('mongoose');
 var path = require('path');
-var Mockgoose = require(path.join(__dirname, '../built/mock-mongoose')).Mockgoose;
+var MockMongoose = require(path.join(__dirname, '../built/mock-mongoose')).MockMongoose;
 var expect = require('chai').expect;
 
-var mockgoose = new Mockgoose(mongoose);
+var mockMongoose = new MockMongoose(mongoose);
 
 // BUG: will not show `Cannot find module 'this-module-not-found'` error
 describe('bug 179', function() {
 	before(function(done) {
-		mockgoose.prepareStorage().then(function() {
+		mockMongoose.prepareStorage().then(function() {
 			mongoose.connect('mongodb://foobar:27017/test', function() {
 				done();	
 			});
@@ -19,4 +19,9 @@ describe('bug 179', function() {
 		done();
 	});
 
+	after("Drop db",(done) => {
+		mockMongoose.killMongo().then(function () {
+			done();
+		});
+	});
 });

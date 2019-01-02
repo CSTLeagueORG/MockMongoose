@@ -1,31 +1,31 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var Debug = require('debug');
-// @ts-ignore
 var async_1 = require("async");
 var httpsProxyAgent = require('https-proxy-agent');
-var MockgooseHelper = /** @class */ (function () {
-    function MockgooseHelper(mongoose, mockgoose) {
+var MockMongooseHelper = /** @class */ (function () {
+    function MockMongooseHelper(mongoose, mockmongoose) {
         this.mongoose = mongoose;
-        this.mockgoose = mockgoose;
-        this.debug = Debug('MockgooseHelper');
+        this.mockmongoose = mockmongoose;
+        this.debug = Debug('MockMongooseHelper');
     }
-    MockgooseHelper.prototype.setDbVersion = function (version) {
+    MockMongooseHelper.prototype.setDbVersion = function (version) {
         {
-            this.mockgoose.mongodHelper.mongoBin.mongoDBPrebuilt.mongoDBDownload.options.version = version;
+            this.mockmongoose.mongodHelper.mongoBin.mongoDBPrebuilt.mongoDBDownload.options.version = version;
         }
     };
-    MockgooseHelper.prototype.setProxy = function (proxy) {
-        this.mockgoose.mongodHelper.mongoBin.mongoDBPrebuilt.mongoDBDownload.options.http = {
+    MockMongooseHelper.prototype.setProxy = function (proxy) {
+        this.mockmongoose.mongodHelper.mongoBin.mongoDBPrebuilt.mongoDBDownload.options.http = {
             agent: new httpsProxyAgent(proxy)
         };
     };
-    MockgooseHelper.prototype.reset = function () {
+    //TODO refactor this. It's too overengineered bullshit
+    MockMongooseHelper.prototype.reset = function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
             async_1.each(_this.mongoose.connections, function (connection, callback) {
-                // check if it is mockgoose connection
-                if (!/mockgoose-temp-db-/.test(connection.name)) {
+                // check if it is mockmongoose connection
+                if (!/mockmongoose-temp-db-/.test(connection.name)) {
                     return callback();
                 }
                 if (connection.readyState !== 1) {
@@ -49,10 +49,10 @@ var MockgooseHelper = /** @class */ (function () {
         });
     };
     ;
-    MockgooseHelper.prototype.isMocked = function () {
+    MockMongooseHelper.prototype.isMocked = function () {
         return this.mongoose.mocked;
     };
-    return MockgooseHelper;
+    return MockMongooseHelper;
 }());
-exports.MockgooseHelper = MockgooseHelper;
-//# sourceMappingURL=C:/Users/PolarWolf/Documents/Mockgoose/mock-mongoose-helper.js.map
+exports.MockMongooseHelper = MockMongooseHelper;
+//# sourceMappingURL=../src/mock-mongoose-helper.js.map

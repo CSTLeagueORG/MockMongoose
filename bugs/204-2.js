@@ -2,7 +2,7 @@ import test from 'ava';
 import sut from './server';
 import request from 'supertest-as-promised';
 import mongoose from 'mongoose';
-import mockgoose from 'mockgoose';
+import mockgoose from 'mockmongoose';
 
 test.before(async t => {
     console.log('1');

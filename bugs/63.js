@@ -1,6 +1,6 @@
 'use strict';
 var mongoose = require('mongoose');
-require('../mockgoose')(mongoose);
+require('../mockmongoose')(mongoose);
 
 mongoose.connect('mongodb://127.0.0.1:27017/test', function(err){
     if(err) return console.log(err);

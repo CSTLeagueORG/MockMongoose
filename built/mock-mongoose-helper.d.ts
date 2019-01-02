@@ -1,8 +1,8 @@
-export declare class MockgooseHelper {
+export declare class MockMongooseHelper {
     mongoose: any;
-    mockgoose: any;
+    mockmongoose: any;
     debug: any;
-    constructor(mongoose: any, mockgoose: any);
+    constructor(mongoose: any, mockmongoose: any);
     setDbVersion(version: string): void;
     setProxy(proxy: string): void;
     reset(): Promise<void>;

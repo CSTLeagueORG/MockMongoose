@@ -1,7 +1,7 @@
 import { MongodHelper } from 'mongodb-prebuilt';
-import { MockgooseHelper } from './mock-mongoose-helper';
-export declare class Mockgoose {
-    helper: MockgooseHelper;
+import { MockMongooseHelper } from './mock-mongoose-helper';
+export declare class MockMongoose {
+    helper: MockMongooseHelper;
     mongodHelper: MongodHelper;
     debug: any;
     mongooseObj: any;

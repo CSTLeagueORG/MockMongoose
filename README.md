@@ -1,8 +1,8 @@
 [![Build Status](https://travis-ci.org/CSTLeagueORG/Mockgoose.svg?branch=master)](https://travis-ci.org/CSTLeagueORG/Mockgoose)
 
-## What is Mockgoose?
+## What is MockMongoose?
 
-Mockgoose provides test database by spinning up mongod on the back when mongoose.connect call is made. By default it is using in memory store which does not have persistence.
+MockMongoose provides test database by spinning up mongod on the back when mongoose.connect call is made. By default it is using in memory store which does not have persistence.
 
 ## Install
 To install the latest official version, use NPM:
@@ -12,19 +12,19 @@ npm install mock-mongoose --save-dev
 ```
 
 ## Usage
-You simply require Mongoose and Mockgoose and wrap Mongoose with Mockgoose.
+You simply require Mongoose and MockMongoose and wrap Mongoose with MockMongoose.
 
 ```javascript
 var mongoose = require('mongoose');
-var Mockgoose = require('mock-mongoose').Mockgoose;
-var mockgoose = new Mockgoose(mongoose);
+var MockMongoose = require('mock-mongoose').MockMongoose;
+var mockMongoose = new MockMongoose(mongoose);
 
-mockgoose.prepareStorage().then(function() {
+mockMongoose.prepareStorage().then(function() {
 	// mongoose connection		
 });
 ```
 
-Once Mongoose has been wrapped by Mockgoose connect() will be intercepted by Mockgoose so that no MongoDB instance is created.
+Once Mongoose has been wrapped by MockMongoose connect() will be intercepted by MockMongoose so that no MongoDB instance is created.
 
 ## Mocha
 
@@ -42,11 +42,11 @@ Same can be done by creating 'mocha.opts' file in your test directory with "--ti
 var Mongoose = require('mongoose').Mongoose;
 var mongoose = new Mongoose();
 
-var Mockgoose = require('mock-mongoose').Mockgoose;
-var mockgoose = new Mockgoose(mongoose);
+var MockMongoose = require('mock-mongoose').MockMongoose;
+var mockMongoose = new MockMongoose(mongoose);
 
 before(function(done) {
-	mockgoose.prepareStorage().then(function() {
+	mockMongoose.prepareStorage().then(function() {
 		mongoose.connect('mongodb://example.com/TestingDB', function(err) {
 			done(err);
 		});
@@ -65,11 +65,11 @@ describe('...', function() {
 
 ```javascript
 import * as mongoose from 'mongoose';
-import {Mockgoose} from 'mock-mongoose';
+import { MockMongoose } from 'mock-mongoose';
 
-let mockgoose: Mockgoose = new Mockgoose(mongoose);
+let mockMongoose: MockMongoose = new MockMongoose(mongoose);
 
-mockgoose.prepareStorage().then(() => {
+mockMongoose.prepareStorage().then(() => {
 	mongoose.connect('mongodb://foobar/baz');
 	mongoose.connection.on('connected', () => {  
 	  console.log('db connection is now open');
@@ -77,24 +77,24 @@ mockgoose.prepareStorage().then(() => {
 });
 ```
 
-## Helper methods and variables (mockgoose.helper)
+## Helper methods and variables (mockMongoose.helper)
 
 ### reset(callback)
 Reset method will remove **ALL** of the collections from a temporary store,
-note that this method is part of **mockgoose** object, and not defined under
+note that this method is part of **mock-mongoose** object, and not defined under
 **mongoose**
 
 ```javascript
-mockgoose.helper.reset().then(() => {
+mockMongoose.helper.reset().then(() => {
 	done()
 });
 ```
 
 ### isMocked
-Returns **TRUE** from **mongoose** object if Mockgoose is applied
+Returns **TRUE** from **mongoose** object if MockMongoose is applied
 
 ```javascript
-if ( mockgoose.helper.isMocked() === true ) {
+if ( mockMongoose.helper.isMocked() === true ) {
   // mongoose object is mocked
 }
 ```
@@ -104,12 +104,12 @@ Set version of MongoDB release
 
 ```javascript
 import * as mongoose from 'mongoose';
-import {Mockgoose} from 'mock-mongoose';
+import { MockMongoose } from 'mock-mongoose';
 
-let mockgoose: Mockgoose = new Mockgoose(mongoose);
-mockgoose.helper.setDbVersion("3.2.1");
+let mockMongoose: MockMongoose = new MockMongoose(mongoose);
+mockMongoose.helper.setDbVersion("3.2.1");
 
-mockgoose.prepareStorage().then(() => {
+mockMongoose.prepareStorage().then(() => {
 	mongoose.connect('mongodb://foobar/baz');
 	mongoose.connection.on('connected', () => {  
 	  console.log('db connection is now open');
@@ -122,14 +122,14 @@ Set proxy for downloading MongoDB release
 
 ```javascript
 import * as mongoose from 'mongoose';
-import {Mockgoose} from 'mock-mongoose';
+import { MockMongoose } from 'mock-mongoose';
 
-let mockgoose: Mockgoose = new Mockgoose(mongoose);
+let mockMongoose: MockMongoose = new MockMongoose(mongoose);
 
 let proxy: string = process.env.http_proxy || 'http://example.com:8080';
-mockgoose.helper.setProxy(proxy);
+mockMongoose.helper.setProxy(proxy);
 
-mockgoose.prepareStorage().then(() => {
+mockMongoose.prepareStorage().then(() => {
 	mongoose.connect('mongodb://foobar/baz');
 	mongoose.connection.on('connected', () => {  
 	  console.log('db connection is now open');
@@ -139,8 +139,8 @@ mockgoose.prepareStorage().then(() => {
 
 ## Development
 
-This section contains instructions for developers working on the Mockgoose codebase.
-It is not relevant if you just want to use Mockgoose as a library in your project.
+This section contains instructions for developers working on the MockMongoose codebase.
+It is not relevant if you just want to use MockMongoose as a library in your project.
 
 ### Pre-requisites
 

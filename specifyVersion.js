@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-let {Mockgoose} = require('./built/mockgoose');
+let {Mockgoose} = require('./built/mockmongoose');
 const {MongoDBDownload} = require('mongodb-download');
 
 let mockgoose = new Mockgoose(mongoose);
@@ -13,7 +13,7 @@ mockgoose.prepareStorage().then(() => {
 	  console.log('Mongoose open');
 	}); 
 });
-//var Mockgoose = require('./Mockgoose')(mongoose).then(function() {
+//var MockMongoose = require('./MockMongoose')(mongoose).then(function() {
 	
 
 //});

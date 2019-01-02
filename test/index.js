@@ -3,14 +3,14 @@ var should = require('chai').should()
 ,expect = require('chai').expect
 , Mongoose = require('mongoose').Mongoose
 , mongoose = new Mongoose
-, Mockgoose = require('../built/mock-mongoose').Mockgoose
-, mockgoose = new Mockgoose(mongoose)
+, MockMongoose = require('../built/mock-mongoose').MockMongoose
+, mockMongoose = new MockMongoose(mongoose)
 , Cat = mongoose.model('Cat', { name: String });
 
 
 describe('User functions', function() {
     before(function(done) {
-		mockgoose.prepareStorage().then(function() {
+		mockMongoose.prepareStorage().then(function() {
         	mongoose.connect('mongodb://127.0.0.1:27017/TestingDB', function(err) {
         	    done(err);
         	}); 
@@ -18,35 +18,39 @@ describe('User functions', function() {
     });
 
     it("isMocked", function(done) {
-		expect(mockgoose.helper.isMocked()).to.be.true;
+		expect(mockMongoose.helper.isMocked()).to.be.true;
 		done();
     });
     it("should create a cat foo", function(done) {
 		Cat.create({name: "foo"}, function(err, cat) {
-		    expect(err).to.be.falsy;
+		    expect(err).to.be.null;
 	            done(err);
 		});
     });
 
     it("should find cat foo", function(done) {
     	Cat.findOne({name: "foo"}, function(err, cat) {
-	    expect(err).to.be.falsy;
+	    expect(err).to.be.null;
     	    done(err);
     	});
     });
 
     it("should remove cat foo", function(done) {
     	Cat.remove({name: "foo"}, function(err, cat) {
-	    expect(err).to.be.falsy;
+	    expect(err).to.be.null;
     	    done(err);
     	});
     });
 
     it("reset", function(done) {
-    	mockgoose.helper.reset().then(function() {
+    	mockMongoose.helper.reset().then(function() {
     	    done();
     	});
     });
 
-
+	after("Drop db",(done) => {
+		mockMongoose.killMongo().then(function () {
+			done();
+		});
+	});
 });

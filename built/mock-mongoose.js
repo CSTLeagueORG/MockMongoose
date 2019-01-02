@@ -14,8 +14,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
         while (_) try {
-            if (f = 1, y && (t = y[op[0] & 2 ? "return" : op[0] ? "throw" : "next"]) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [0, t.value];
+            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+            if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
                 case 0: case 1: t = op; break;
                 case 4: _.label++; return { value: op[1], done: false };
@@ -47,80 +47,86 @@ var mongodb_prebuilt_1 = require("mongodb-prebuilt");
 var mock_mongoose_helper_1 = require("./mock-mongoose-helper");
 //const uuidV4 = require('uuid/v4');
 var uuidV4 = require('uuid/v4');
-var Mockgoose = /** @class */ (function () {
-    function Mockgoose(mongooseObj) {
+var MockMongoose = /** @class */ (function () {
+    function MockMongoose(mongooseObj) {
         this.mongodHelper = new mongodb_prebuilt_1.MongodHelper();
-        this.debug = Debug('Mockgoose');
-        this.helper = new mock_mongoose_helper_1.MockgooseHelper(mongooseObj, this);
+        this.debug = Debug('MockMongoose');
+        this.helper = new mock_mongoose_helper_1.MockMongooseHelper(mongooseObj, this);
         this.mongooseObj = mongooseObj;
         this.mongooseObj.mocked = true;
     }
-    Mockgoose.prototype.prepareStorage = function () {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var tempDBPathPromise = _this.getTempDBPath();
-            var openPortPromise = _this.getOpenPort();
-            Promise.all([tempDBPathPromise, openPortPromise]).then(function (promiseValues) {
-                var dbPath = promiseValues[0];
-                var openPort = promiseValues[1].toString();
-                var storageEngine = _this.getMemoryStorageName();
-                var mongodArgs = [
-                    '--port', openPort,
-                    '--storageEngine', storageEngine,
-                    '--dbpath', dbPath
-                ];
-                _this.debug("@prepareStorage mongod args, " + mongodArgs);
-                _this.mongodHelper.mongoBin.commandArguments = mongodArgs;
-                _this.mongodHelper.run().then(function () {
-                    var connectionString = _this.getMockConnectionString(openPort);
-                    _this.mockConnectCalls(connectionString);
-                    resolve();
-                }, function (e) {
-                    reject(e);
-                    // throw e;
-                    // return this.prepareStorage();
-                });
+    MockMongoose.prototype.prepareStorage = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var tempDBPathPromise, openPortPromise, promiseValues, dbPath, openPort, storageEngine, mongodArgs, connectionString;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        tempDBPathPromise = this.getTempDBPath();
+                        openPortPromise = this.getOpenPort();
+                        return [4 /*yield*/, Promise.all([tempDBPathPromise, openPortPromise])];
+                    case 1:
+                        promiseValues = _a.sent();
+                        dbPath = promiseValues[0];
+                        openPort = promiseValues[1].toString();
+                        storageEngine = this.getMemoryStorageName();
+                        mongodArgs = [
+                            '--port', openPort,
+                            '--storageEngine', storageEngine,
+                            '--dbpath', dbPath
+                        ];
+                        this.debug("@prepareStorage mongod args, " + mongodArgs);
+                        this.mongodHelper.mongoBin.commandArguments = mongodArgs;
+                        return [4 /*yield*/, this.mongodHelper.run()];
+                    case 2:
+                        _a.sent();
+                        connectionString = this.getMockConnectionString(openPort);
+                        this.mockConnectCalls(connectionString);
+                        return [2 /*return*/];
+                }
             });
         });
     };
-    Mockgoose.prototype.getMockConnectionString = function (port) {
-        var dbName = 'mockgoose-temp-db-' + uuidV4();
+    MockMongoose.prototype.getMockConnectionString = function (port) {
+        var dbName = 'mockmongoose-temp-db-' + uuidV4();
         var connectionString = "mongodb://localhost:" + port + "/" + dbName;
         return connectionString;
     };
-    Mockgoose.prototype.mockConnectCalls = function (connection) {
+    MockMongoose.prototype.mockConnectCalls = function (connection) {
         var createConnection = new ConnectionWrapper('createConnection', this.mongooseObj, connection);
         this.mongooseObj.createConnection = function () { return createConnection.run(arguments); };
         var connect = new ConnectionWrapper('connect', this.mongooseObj, connection);
         this.mongooseObj.connect = function () { return connect.run(arguments); };
     };
-    Mockgoose.prototype.getOpenPort = function () {
-        return new Promise(function (resolve, reject) {
-            portfinder.getPort({ port: 27017 }, function (err, port) {
-                if (err) {
-                    reject(err);
-                }
-                else {
-                    resolve(port);
+    MockMongoose.prototype.getOpenPort = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, portfinder.getPortPromise({ port: 27017 })];
+                    case 1: return [2 /*return*/, _a.sent()];
                 }
             });
         });
     };
     // todo: add support to mongodb-download or prebuilt to return version
-    Mockgoose.prototype.getMemoryStorageName = function () {
+    MockMongoose.prototype.getMemoryStorageName = function () {
         return "ephemeralForTest";
     };
-    Mockgoose.prototype.getTempDBPath = function () {
-        return new Promise(function (resolve, reject) {
-            var tempDir = path.resolve(os.tmpdir(), "mockgoose", Date.now().toString());
-            fs.ensureDir(tempDir, function (err) {
-                if (err)
-                    throw err;
-                resolve(tempDir);
+    MockMongoose.prototype.getTempDBPath = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var tempDir;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        tempDir = path.resolve(os.tmpdir(), "mockmongoose", Date.now().toString());
+                        return [4 /*yield*/, fs.ensureDir(tempDir)];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/, tempDir];
+                }
             });
         });
     };
-    Mockgoose.prototype.killMongo = function () {
+    MockMongoose.prototype.killMongo = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
@@ -134,9 +140,9 @@ var Mockgoose = /** @class */ (function () {
             });
         });
     };
-    return Mockgoose;
+    return MockMongoose;
 }());
-exports.Mockgoose = Mockgoose;
+exports.MockMongoose = MockMongoose;
 var ConnectionWrapper = /** @class */ (function () {
     function ConnectionWrapper(functionName, mongoose, connectionString) {
         this.functionName = functionName;
@@ -153,4 +159,4 @@ var ConnectionWrapper = /** @class */ (function () {
     return ConnectionWrapper;
 }());
 exports.ConnectionWrapper = ConnectionWrapper;
-//# sourceMappingURL=C:/Users/PolarWolf/Documents/Mockgoose/mock-mongoose.js.map
+//# sourceMappingURL=../src/mock-mongoose.js.map

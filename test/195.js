@@ -4,12 +4,12 @@ var expect = require('chai').expect;
 
 describe('callback', function todoDescribe() {
   var Mongoose = require('mongoose').Mongoose;
-  var Mockgoose = require('../built/mock-mongoose').Mockgoose;
+  var MockMongoose = require('../built/mock-mongoose').MockMongoose;
   var mongoose = new Mongoose();
-  var mockgoose = new Mockgoose(mongoose);
+  var mockMongoose = new MockMongoose(mongoose);
   
   it('should return native connection object', function(done) {
-  	mockgoose.prepareStorage().then(function() {
+  	mockMongoose.prepareStorage().then(function() {
     	    var connection = mongoose.createConnection('mongodb://localhost/mydb');
             expect(typeof connection).to.equal('object'); 
             expect(connection.constructor.name).to.equal('NativeConnection'); 
@@ -17,4 +17,9 @@ describe('callback', function todoDescribe() {
 	});
   });
 
+    after("Drop db",(done) => {
+        mockMongoose.killMongo().then(function () {
+            done();
+        });
+    });
 });

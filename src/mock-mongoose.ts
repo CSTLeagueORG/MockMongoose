@@ -7,57 +7,48 @@ import * as path from 'path';
 import * as fs from 'fs-extra';
 // @ts-ignore
 import {MongodHelper} from 'mongodb-prebuilt';
-import {MockgooseHelper} from './mock-mongoose-helper';
+import {MockMongooseHelper} from './mock-mongoose-helper';
 import {Mongoose} from 'mongoose';
 //const uuidV4 = require('uuid/v4');
 const uuidV4: any = require('uuid/v4');
 
-export class Mockgoose {
-  
-  helper: MockgooseHelper;
+export class MockMongoose {
+
+  helper: MockMongooseHelper;
   mongodHelper: MongodHelper = new MongodHelper();
   debug: any;
   mongooseObj: any;
-  
+
   constructor(mongooseObj: any) {
-    this.debug = Debug('Mockgoose');
-    this.helper = new MockgooseHelper(mongooseObj, this);
+    this.debug = Debug('MockMongoose');
+    this.helper = new MockMongooseHelper(mongooseObj, this);
 
     this.mongooseObj = mongooseObj;
     this.mongooseObj.mocked = true;
   }
   
-  prepareStorage(): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
-      let tempDBPathPromise: Promise<string> = this.getTempDBPath();
-      let openPortPromise: Promise<number> = this.getOpenPort();
-      
-      Promise.all([tempDBPathPromise, openPortPromise]).then((promiseValues) => {
-        let dbPath: string = promiseValues[0];
-        let openPort: string = promiseValues[1].toString();
-        let storageEngine: string = this.getMemoryStorageName();
-        let mongodArgs: string[] = [
-        '--port', openPort, 
-        '--storageEngine', storageEngine,
-        '--dbpath', dbPath
-        ];
-        this.debug(`@prepareStorage mongod args, ${mongodArgs}`);
-        this.mongodHelper.mongoBin.commandArguments = mongodArgs;
-        this.mongodHelper.run().then(() => {
-          let connectionString: string = this.getMockConnectionString(openPort);
-          this.mockConnectCalls(connectionString);
-          resolve();
-        }, (e: any) => {
-          reject(e);
-          // throw e;
-          // return this.prepareStorage();
-        });
-      });
-    });
+  async prepareStorage(): Promise<void> {
+    let tempDBPathPromise: Promise<string> = this.getTempDBPath();
+    let openPortPromise: Promise<number> = this.getOpenPort();
+
+    let promiseValues = await Promise.all([tempDBPathPromise, openPortPromise]);
+    let dbPath: string = promiseValues[0];
+    let openPort: string = promiseValues[1].toString();
+    let storageEngine: string = this.getMemoryStorageName();
+    let mongodArgs: string[] = [
+      '--port', openPort,
+      '--storageEngine', storageEngine,
+      '--dbpath', dbPath
+    ];
+    this.debug(`@prepareStorage mongod args, ${mongodArgs}`);
+    this.mongodHelper.mongoBin.commandArguments = mongodArgs;
+    await this.mongodHelper.run();
+    let connectionString: string = this.getMockConnectionString(openPort);
+    this.mockConnectCalls(connectionString);
   }
   
   getMockConnectionString(port: string): string {
-    const dbName: string = 'mockgoose-temp-db-' + uuidV4();
+    const dbName: string = 'mockmongoose-temp-db-' + uuidV4();
     const connectionString: string = `mongodb://localhost:${port}/${dbName}`;
     return connectionString;
   }
@@ -69,16 +60,8 @@ export class Mockgoose {
     this.mongooseObj.connect = function() { return connect.run(arguments) };
   }
   
-  getOpenPort(): Promise<number> {
-    return new Promise<number>((resolve, reject) => {
-      portfinder.getPort({port: 27017}, function (err: any, port: number) {
-        if ( err ) {
-          reject(err)
-        } else {
-          resolve(port);        
-        }
-      });
-    });
+  async getOpenPort(): Promise<number> {
+    return await portfinder.getPortPromise({port: 27017});
   }
   
   // todo: add support to mongodb-download or prebuilt to return version
@@ -87,14 +70,10 @@ export class Mockgoose {
     
   }
   
-  getTempDBPath(): Promise<string> {
-    return new Promise<string>((resolve, reject) => {
-      let tempDir: string = path.resolve(os.tmpdir(), "mockgoose", Date.now().toString());
-      fs.ensureDir(tempDir, (err: any) => {
-        if (err) throw err;
-        resolve(tempDir);
-      });
-    });
+  async getTempDBPath(): Promise<string> {
+    let tempDir: string = path.resolve(os.tmpdir(), "mockmongoose", Date.now().toString());
+    await fs.ensureDir(tempDir);
+    return tempDir;
   }
 
   async killMongo(): Promise<void> {
@@ -112,9 +91,7 @@ export class ConnectionWrapper {
   mongoose: any;
   connectionString: string;
   
-  constructor(
-  functionName: string, mongoose: any, connectionString: string
-  ) {
+  constructor(functionName: string, mongoose: any, connectionString: string) {
     this.functionName = functionName;
     this.mongoose = mongoose;
     this.functionCode = mongoose[functionName];

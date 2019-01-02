@@ -73,4 +73,4 @@ var ConnectionWrapper = (function () {
     return ConnectionWrapper;
 }());
 exports.ConnectionWrapper = ConnectionWrapper;
-//# sourceMappingURL=/Users/winfinit/workspace/rj/Mockgoose/Mockgoose/src/mockgoose.js.map
+//# sourceMappingURL=/Users/winfinit/workspace/rj/MockMongoose/MockMongoose/src/mockmongoose.js.map

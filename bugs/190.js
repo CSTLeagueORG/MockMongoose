@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mockgoose = require('../mockgoose');
+const mockgoose = require('../mockmongoose');
 const expect = require('chai').expect;
 
 mockgoose( mongoose )
