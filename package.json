@@ -47,7 +47,7 @@
   "devDependencies": {
     "@types/async": "^2.0.50",
     "@types/fs-extra": "^5.0.4",
-    "@types/mongoose": "^5.3.5",
+    "@types/mongoose": "^5.3.7",
     "@types/node": "^10.12.18",
     "@types/node-uuid": "^0.0.28",
     "typescript": "^3.2.2",
