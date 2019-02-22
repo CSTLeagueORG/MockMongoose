@@ -52,7 +52,7 @@
     "@types/node-uuid": "^0.0.28",
     "typescript": "^3.3.3333",
     "chai": "^4.2.0",
-    "mocha": "^6.0.0",
+    "mocha": "^6.0.1",
     "mongoose": "*"
   },
   "bugs": {
