@@ -50,7 +50,7 @@
     "@types/mongoose": "^5.3.25",
     "@types/node": "^11.11.6",
     "@types/node-uuid": "^0.0.28",
-    "typescript": "^3.4.2",
+    "typescript": "^3.4.3",
     "chai": "^4.2.0",
     "mocha": "^6.1.2",
     "mongoose": "*"
