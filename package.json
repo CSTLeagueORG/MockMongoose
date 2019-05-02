@@ -48,7 +48,7 @@
     "@types/async": "^2.4.1",
     "@types/fs-extra": "^5.0.5",
     "@types/mongoose": "^5.3.27",
-    "@types/node": "^11.13.8",
+    "@types/node": "^11.13.9",
     "@types/node-uuid": "^0.0.28",
     "typescript": "^3.4.5",
     "chai": "^4.2.0",
