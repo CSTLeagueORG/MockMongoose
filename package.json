@@ -45,7 +45,7 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "@types/async": "^2.4.1",
+    "@types/async": "^2.4.2",
     "@types/fs-extra": "^5.1.0",
     "@types/mongoose": "^5.5.0",
     "@types/node": "^11.13.9",
