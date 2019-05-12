@@ -11,7 +11,7 @@ var should = require('chai').should()
 describe('User functions', function() {
     before(function(done) {
 		mockMongoose.prepareStorage().then(function() {
-        	mongoose.connect('mongodb://127.0.0.1:27017/TestingDB', function(err) {
+        	mongoose.connect('mongodb://localhost/TestingDB', function(err) {
         	    done(err);
         	}); 
 		});
