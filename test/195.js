@@ -2,7 +2,7 @@
 
 var expect = require('chai').expect;
 
-describe('callback', function todoDescribe() {
+describe('issue 195 callback', function todoDescribe() {
   var Mongoose = require('mongoose').Mongoose;
   var MockMongoose = require('../built/mock-mongoose').MockMongoose;
   var mongoose = new Mongoose();

@@ -1,8 +1,10 @@
 sudo: false
 notifications:
-  webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
+  webhooks:
+    - "https://fathomless-fjord-24024.herokuapp.com/notify"
 language: node_js
 node_js:
   - "8"
+  - "9"
   - "10"
   - "11"

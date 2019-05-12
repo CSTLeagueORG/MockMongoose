@@ -1,3 +1,5 @@
+import {Connection, Mongoose} from "mongoose";
+
 const Debug: any = require('debug');
 import {each as asyncEach} from 'async';
 let httpsProxyAgent = require('https-proxy-agent');
@@ -18,32 +20,20 @@ export class MockMongooseHelper {
       agent: new httpsProxyAgent(proxy)
     };
   }
-   //TODO refactor this. It's too overengineered bullshit
-  reset(): Promise<void>  {
-    return new Promise<void>((resolve, reject) => {
-      asyncEach(this.mongoose.connections, (connection: any, callback: Function) => {
-        // check if it is mockmongoose connection
-        if (!/mockmongoose-temp-db-/.test(connection.name)) {
-          return callback();
-        } 
-        if ( connection.readyState !== 1 ) {
-          return callback();
-        }
-        connection.dropDatabase((err: any) => {
-          callback();
-        }, (e: any) => {
-          this.debug(`@reset err dropping database ${e}`);
-          callback();
-        });
-      }, (err: any) => {
-        if ( err ) {
-          this.debug(`@reset err ${err}`);
-          reject();
-        } else {
-          resolve();
-        }
-      })
-    });
+  async reset(): Promise<void>  {
+    for (let connection of this.mongoose.connections) {
+      if (!/mockmongoose-temp-db-/.test(connection.name)) {
+        continue;
+      }
+      if ( connection.readyState !== 1 ) {
+        continue;
+      }
+      try {
+        await connection.dropDatabase();
+      } catch (e) {
+        this.debug(`@reset err dropping database ${e}`);
+      }
+    }
   };
 
   isMocked(): boolean {

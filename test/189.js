@@ -1,7 +1,7 @@
 "use strict";
 
 
-describe('callback', function todoDescribe() {
+describe('issue 189 callback', function todoDescribe() {
   var Mongoose = require('mongoose').Mongoose;
   var MockMongoose = require('../built/mock-mongoose').MockMongoose;
   var mongoose = new Mongoose();

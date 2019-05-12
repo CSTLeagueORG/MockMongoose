@@ -6,7 +6,7 @@ var expect = require('chai').expect;
 var mockMongoose = new MockMongoose(mongoose);
 
 // BUG: will not show `Cannot find module 'this-module-not-found'` error
-describe('bug 179', function() {
+describe('bug 170', function() {
 	before(function(done) {
 		mockMongoose.prepareStorage().then(function() {
 			mongoose.connect('mongodb://foobar:27017/test', function() {

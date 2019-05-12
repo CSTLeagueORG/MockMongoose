@@ -30,13 +30,14 @@ describe('User functions', function() {
 
     it("should find cat foo", function(done) {
     	Cat.findOne({name: "foo"}, function(err, cat) {
-	    expect(err).to.be.null;
+	    	expect(err).to.be.null;
+			expect(cat.name).to.be.equal("foo");
     	    done(err);
     	});
     });
 
     it("should remove cat foo", function(done) {
-    	Cat.remove({name: "foo"}, function(err, cat) {
+    	Cat.deleteOne({name: "foo"}, function(err, cat) {
 	    expect(err).to.be.null;
     	    done(err);
     	});
