@@ -41,7 +41,7 @@
     "https-proxy-agent": "^2.2.1",
     "mongodb-prebuilt": "^6.5.0",
     "portfinder": "^1.0.20",
-    "rimraf": "^2.6.2",
+    "rimraf": "^3.0.0",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
