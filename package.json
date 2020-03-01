@@ -3,7 +3,7 @@
   "main": "built/mock-mongoose.js",
   "types": "built/mock-mongoose.d.ts",
   "description": "MockMongoose is an in memory database mock to allow for testing of applications that rely on Mongoose.",
-  "version": "8.0.0b2",
+  "version": "8.0.0",
   "contributors": [
     {
       "name": "Anthony McCormick",
@@ -20,7 +20,6 @@
     "datastore",
     "nosql",
     "typescript",
-    "sql",
     "db",
     "database",
     "mock",
