@@ -3,7 +3,7 @@
   "main": "built/mock-mongoose.js",
   "types": "built/mock-mongoose.d.ts",
   "description": "Mockgoose is an in memory database mock to allow for testing of applications that rely on Mongoose.",
-  "version": "7.4.0r2",
+  "version": "7.4.1",
   "contributors": [
     {
       "name": "Anthony McCormick",
@@ -36,8 +36,8 @@
     "async": "2.1.5",
     "debug": "^3.1.0",
     "fs-extra": "^2.0.0",
-    "https-proxy-agent": "^2.2.1",
-    "mongodb-prebuilt": "^6.3.6",
+    "https-proxy-agent": "^2.2.4",
+    "mongodb-prebuilt": "^6.5.0",
     "portfinder": "^1.0.13",
     "rimraf": "^2.6.1",
     "uuid": "^3.0.1"
@@ -50,7 +50,7 @@
     "@types/node-uuid": "0.0.28",
     "chai": "~2.2.0",
     "mocha": "^5.2.0",
-    "mongoose": "*"
+    "mongoose": "^5.9.2"
   },
   "bugs": "https://github.com/CSTLeagueORG/MockMongoose/issues",
   "repository": "CSTLeagueORG/MockMongoose",
