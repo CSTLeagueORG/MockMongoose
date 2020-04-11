@@ -1,6 +1,6 @@
 ## What is MockMongoose?
 
-[![Build Status](https://img.shields.io/travis/CSTLeagueORG/MockMongoose/mockgoose?logo=travis)](https://travis-ci.org/CSTLeagueORG/MockMongoose)
+[![Build Status](https://img.shields.io/travis/CSTLeagueORG/MockMongoose/master?logo=travis)](https://travis-ci.org/CSTLeagueORG/MockMongoose)
 [![](https://img.shields.io/david/CSTLeagueORG/MockMongoose.svg?logo=dependabot)](https://github.com/cstleagueorg/mockmongoose/network/dependencies)
 [![](https://img.shields.io/npm/v/mock-mongoose/latest.svg?logo=npm)](https://www.npmjs.com/package/mock-mongoose)
 [![](https://img.shields.io/npm/v/mock-mongoose/mockgoose-legacy.svg?logo=npm)](https://www.npmjs.com/package/mock-mongoose)
