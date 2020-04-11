@@ -13,7 +13,7 @@ describe('User functions', function() {
 		mockgoose.prepareStorage().then(function() {
         	mongoose.connect('mongodb://127.0.0.1:27017/TestingDB', function(err) {
         	    done(err);
-        	}); 
+        	});
 		});
     });
 
@@ -23,21 +23,21 @@ describe('User functions', function() {
     });
     it("should create a cat foo", function(done) {
 		Cat.create({name: "foo"}, function(err, cat) {
-		    expect(err).to.be.falsy;
+		    expect(err).to.be.null;
 	            done(err);
 		});
     });
 
     it("should find cat foo", function(done) {
     	Cat.findOne({name: "foo"}, function(err, cat) {
-	    expect(err).to.be.falsy;
+	    expect(err).to.be.null;
     	    done(err);
     	});
     });
 
     it("should remove cat foo", function(done) {
     	Cat.remove({name: "foo"}, function(err, cat) {
-	    expect(err).to.be.falsy;
+	    expect(err).to.be.null;
     	    done(err);
     	});
     });

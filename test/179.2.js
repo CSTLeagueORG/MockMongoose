@@ -29,7 +29,7 @@ describe('issue 179 too', function () {
     Cat.create({
       name: "foo"
     }, function (err, cat) {
-      expect(err).to.be.falsy;
+      expect(err).to.be.null;
       done(err);
     });
   });
@@ -38,7 +38,7 @@ describe('issue 179 too', function () {
     Cat.findOne({
       name: "foo"
     }, function (err, cat) {
-      expect(err).to.be.falsy;
+      expect(err).to.be.null;
       expect(cat).to.be.null;
       done(err);
     });
