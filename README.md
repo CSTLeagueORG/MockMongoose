@@ -1,10 +1,10 @@
 ## What is MockMongoose?
 
-[![Build Status](https://travis-ci.org/CSTLeagueORG/MockMongoose.svg?branch=master)](https://travis-ci.org/CSTLeagueORG/MockMongoose)
-[![](https://img.shields.io/david/CSTLeagueORG/MockMongoose.svg)](https://www.npmjs.com/package/mock-mongoose)
+[![Build Status](https://img.shields.io/travis/CSTLeagueORG/MockMongoose/mockgoose?logo=travis)](https://travis-ci.org/CSTLeagueORG/MockMongoose)
+[![](https://img.shields.io/david/CSTLeagueORG/MockMongoose.svg?logo=dependabot)](https://github.com/cstleagueorg/mockmongoose/network/dependencies)
+[![](https://img.shields.io/npm/v/mock-mongoose/latest.svg?logo=npm)](https://www.npmjs.com/package/mock-mongoose)
+[![](https://img.shields.io/npm/v/mock-mongoose/mockgoose-legacy.svg?logo=npm)](https://www.npmjs.com/package/mock-mongoose)
 [![](https://img.shields.io/github/license/CSTLeagueORG/MockMongoose.svg)](https://github.com/CSTLeagueORG/MockMongoose/blob/master/LICENSE)
-[![](https://img.shields.io/npm/v/mock-mongoose/latest.svg)](https://www.npmjs.com/package/mock-mongoose)
-[![](https://img.shields.io/npm/v/mock-mongoose/beta.svg)](https://www.npmjs.com/package/mock-mongoose)
 [![](https://img.shields.io/github/release-date/CSTLeagueORG/MockMongoose.svg)](https://github.com/CSTLeagueORG/MockMongoose/releases)
 [![](https://img.shields.io/github/contributors/CSTLeagueORG/MockMongoose.svg)](https://github.com/CSTLeagueORG/MockMongoose/graphs/contributors)
 
