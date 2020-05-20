@@ -41,7 +41,7 @@
     "mongodb-prebuilt": "^6.5.0",
     "portfinder": "^1.0.20",
     "rimraf": "^3.0.0",
-    "uuid": "^7.0.1"
+    "uuid": "^8.1.0"
   },
   "devDependencies": {
     "@types/async": "^3.0.0",
